@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  lab3:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    depends_on:
+      - db
+    restart: always
+
+  # MariaDB database
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_DATABASE: lab3
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./lab3-db-data:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
