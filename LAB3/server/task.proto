@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package lab3;
 
+option go_package = "github.com/ASV44/ADA-LAB3/server/protobuf";
+
 message Task {
     int32 id = 1;
     int32 version = 2;
